@@ -1,0 +1,33 @@
+﻿@page
+@model CoreRazorPages.Pages.Employees.IndexModel
+@{
+}
+
+
+<h3>Employees</h3>
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Salary</th>
+                <th>DepartmentId</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model.Employees)
+            {
+                <tr>
+                    <td>@employee.Id</td>
+                    <td>@employee.Name</td>
+                    <td>@employee.Gender</td>
+                    <td>@employee.Salary</td>
+                    <td>@employee.DepartmentId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
