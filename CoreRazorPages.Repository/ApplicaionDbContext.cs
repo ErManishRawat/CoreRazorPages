@@ -20,7 +20,7 @@ namespace CoreRazorPages.Repository
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=coreappserver.database.windows.net;Initial Catalog=AzureDB;User Id=sqladmin;password=Manish@1989;Trusted_Connection=False;Encrypt=True;");
+                optionsBuilder.UseSqlServer("Data Source=razorserverapp.database.windows.net;Initial Catalog=AzureDB;User Id=sqladmin;password=Manish@1989;Trusted_Connection=False;Encrypt=True;");
             }
         }
 
