@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CoreRazorPages.Services.Interface
 {
-    public interface IEmployee
+    public interface IDepartmentService
     {
-        IEnumerable<Employee> GetAllEmployee();
-        Employee? GetEmployeeById(int id);
+        IEnumerable<Department> GetAllDepartment();
+        Department? GetDepartmentById(int id);
     }
 }

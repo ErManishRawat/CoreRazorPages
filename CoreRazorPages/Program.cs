@@ -1,6 +1,5 @@
 using CoreRazorPages.Repository;
-using CoreRazorPages.Services.Implementation;
-using CoreRazorPages.Services.Interface;
+using CoreRazorPages.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -8,10 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-builder.Services.AddDbContext<ApplicaionDbContext>(option =>
+builder.Services.AddDbContext<ApplicationDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("AzureDBConnection")));
 
-builder.Services.AddTransient<IEmployee, EmployeeService>();
+builder.Services.RegisterService();
+
 
 var app = builder.Build();
 

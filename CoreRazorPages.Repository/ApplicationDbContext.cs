@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace CoreRazorPages.Repository
 {
-    public partial class ApplicaionDbContext : DbContext
+    public partial class ApplicationDbContext : DbContext
     {
-        public ApplicaionDbContext(DbContextOptions<ApplicaionDbContext> options) :base(options) { }
-
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :base(options) { }
         public virtual DbSet<Department> Departments { get; set; } = null!;
         public virtual DbSet<Employee> Employees { get; set; } = null!;
 
@@ -20,7 +19,7 @@ namespace CoreRazorPages.Repository
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=razorserverapp.database.windows.net;Initial Catalog=AzureDB;User Id=sqladmin;password=Manish@1989;Trusted_Connection=False;Encrypt=True;");
+                optionsBuilder.UseSqlServer("Data Source=MANISH-PC;Initial Catalog=AzureDB;User Id=sa;password=sa123;");
             }
         }
 

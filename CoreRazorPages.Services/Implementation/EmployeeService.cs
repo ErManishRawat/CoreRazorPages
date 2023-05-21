@@ -11,20 +11,23 @@ namespace CoreRazorPages.Services.Implementation
 {
     public class EmployeeService : IEmployee
     {
-        public readonly ApplicaionDbContext _ApplicaionDbContext;
-        public EmployeeService(ApplicaionDbContext applicaionDbContext)
+        public readonly IRepository<Employee> _employeeRepo;
+        private readonly IRepository<Department> _departmentRepo;
+
+        public EmployeeService(IRepository<Employee> employeeRepo, IRepository<Department> departmentRepo)
         {
-            this._ApplicaionDbContext = applicaionDbContext;
+            this._employeeRepo = employeeRepo;
+            this._departmentRepo = departmentRepo;
         }
 
-        public List<Employee> GetAllEmployee()
+        public IEnumerable<Employee> GetAllEmployee()
         {
-            return this._ApplicaionDbContext.Employees.ToList();
+            return this._employeeRepo.GetAll();
         }
 
-        public Employee? GetEmployeeById(int? id)
+        public Employee? GetEmployeeById(int id)
         {
-            return _ApplicaionDbContext.Employees.Where(x => x.Id == id).FirstOrDefault();
+            return _employeeRepo.Get(id);
         }
     }
 }
