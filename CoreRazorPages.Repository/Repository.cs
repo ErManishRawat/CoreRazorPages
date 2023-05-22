@@ -11,6 +11,7 @@ namespace CoreRazorPages.Repository
     {
         private readonly ApplicationDbContext _dbContext;
         private DbSet<T> entities;
+
         public Repository(ApplicationDbContext dbContext)
         {
             this._dbContext = dbContext;
@@ -27,14 +28,19 @@ namespace CoreRazorPages.Repository
             _dbContext.SaveChanges();
         }
 
-        public T? Get(object id)
+        public T? GetById(object id)
         {
             return entities.Find(id);
         }
 
-        public IQueryable<T> GetAll()
+        public IEnumerable<T> Get()
         {
-            return entities.AsQueryable();
+            return entities.AsEnumerable();
+        }
+
+        public IEnumerable<T> GetAll(string? sqlcommand)
+        {
+            return _dbContext.Set<T>().FromSqlRaw($"EXEC {sqlcommand}").AsEnumerable();
         }
 
         public void Insert(T entity)
@@ -69,5 +75,6 @@ namespace CoreRazorPages.Repository
             }
             _dbContext.SaveChanges();
         }
+
     }
 }

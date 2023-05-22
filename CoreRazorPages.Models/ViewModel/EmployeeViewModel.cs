@@ -14,6 +14,6 @@ namespace CoreRazorPages.Models.ViewModel
         public int? Salary { get; set; }
         public string? Department { get; set; }
         public string? Location { get; set; }
-        public string? DeartmentHead { get; set; }
+        public string? DepartmentHead { get; set; }
     }
 }

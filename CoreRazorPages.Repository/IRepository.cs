@@ -8,12 +8,15 @@ namespace CoreRazorPages.Repository
 {
     public  interface IRepository<T> where T : class
     {
-        IQueryable<T> GetAll();
-        T? Get(object id);
+        IEnumerable<T> Get();
+        IEnumerable<T> GetAll(string v);
+        T? GetById(object id);
         void Insert(T entity);
         void Update(T entity);
         void Delete(T entity);
         void Remove(T entity);
         void SaveChanges();
+
+
     }
 }
