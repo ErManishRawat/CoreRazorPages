@@ -1,33 +1,43 @@
 ﻿using CoreRazorPages.Models;
+using CoreRazorPages.Models.ViewModel;
 using CoreRazorPages.Repository;
 using CoreRazorPages.Services.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace CoreRazorPages.Services.Implementation
 {
     public class EmployeeService : IEmployee
     {
-        public readonly IRepository<Employee> _employeeRepo;
+        public readonly IRepository<EmployeeViewModel> _employeeRepo;
         private readonly IRepository<Department> _departmentRepo;
 
-        public EmployeeService(IRepository<Employee> employeeRepo, IRepository<Department> departmentRepo)
+        public EmployeeService(IRepository<EmployeeViewModel> employeeRepo, IRepository<Department> departmentRepo)
         {
             this._employeeRepo = employeeRepo;
             this._departmentRepo = departmentRepo;
         }
 
-        public IEnumerable<Employee> GetAllEmployee()
+        public IEnumerable<EmployeeViewModel> GetAllEmployee()
         {
-            return this._employeeRepo.GetAll();
+            return (IEnumerable<EmployeeViewModel>)this._employeeRepo.GetAll("spGetAllEmployees").ToList();
+            //return (IEnumerable<EmployeeViewModel>)(from employee in this._employeeRepo.GetAll()
+            //                                        join department in this._departmentRepo.GetAll() on employee.DepartmentId equals department.Id
+            //                                        select new EmployeeViewModel
+            //                                        {
+            //                                            Id = employee.Id,
+            //                                            Name = employee.Name,
+            //                                            Gender = employee.Gender,
+            //                                            Salary = employee.Salary,
+            //                                            Department = department.DepartmentName,
+            //                                            Location = department.Location,
+            //                                            DeartmentHead = department.DepartmentHead
+            //                                        }).ToList();
         }
 
-        public Employee? GetEmployeeById(int id)
+        public EmployeeViewModel? GetEmployeeById(int id)
         {
-            return _employeeRepo.Get(id);
+            return _employeeRepo.GetById(id);
         }
     }
 }

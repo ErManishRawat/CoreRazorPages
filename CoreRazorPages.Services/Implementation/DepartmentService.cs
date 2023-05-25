@@ -20,12 +20,12 @@ namespace CoreRazorPages.Services.Implementation
 
         public IEnumerable<Department> GetAllDepartment()
         {
-            return _departmentRepository.GetAll();
+            return _departmentRepository.GetAll("");
         }
 
         public Department? GetDepartmentById(int id)
         {
-            return _departmentRepository.Get(id);
+            return _departmentRepository.GetById(id);
         }
     }
 }

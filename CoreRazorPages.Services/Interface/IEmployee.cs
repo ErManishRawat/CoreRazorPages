@@ -1,4 +1,5 @@
 ﻿using CoreRazorPages.Models;
+using CoreRazorPages.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace CoreRazorPages.Services.Interface
 {
     public interface IEmployee
     {
-        IEnumerable<Employee> GetAllEmployee();
-        Employee? GetEmployeeById(int id);
+        IEnumerable<EmployeeViewModel> GetAllEmployee();
+        EmployeeViewModel? GetEmployeeById(int id);
     }
 }
