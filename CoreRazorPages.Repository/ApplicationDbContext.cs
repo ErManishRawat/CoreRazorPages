@@ -1,4 +1,5 @@
 ﻿using CoreRazorPages.Models;
+using CoreRazorPages.Models.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System;
@@ -14,6 +15,7 @@ namespace CoreRazorPages.Repository
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :base(options) { }
         public virtual DbSet<Department> Departments { get; set; } = null!;
         public virtual DbSet<Employee> Employees { get; set; } = null!;
+        public virtual DbSet<EmployeeViewModel> EmployeesViewModel { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
